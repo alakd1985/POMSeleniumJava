@@ -27,10 +27,7 @@ public class MyFirstTestClass
         driver.findElement(By.cssSelector("#woocommerce-product-search-field-0")).sendKeys("Blue");
         driver.findElement(By.cssSelector("button[value='Search']")).click();
         Thread.sleep(3000);
-       
 
-//        Assert.assertEquals(driver.findElement(By.xpath("//h1[contains(text(),'Search results: “blue”')]")).
-//                getText(),"Search results: “blue”");
         driver.findElement(By.xpath("//a[@aria-label='Add “Blue Shoes” to your cart']")).click();
         driver.findElement((By.cssSelector("a[title='View cart']"))).click();
         Assert.assertEquals(driver.findElement(By.cssSelector("//a[normalize-space()='Blue Shoes']")).getText(),

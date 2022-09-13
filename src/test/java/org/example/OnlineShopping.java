@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import page.HomePage;
+import page.StorePage;
 import pom.BaseTest;
 
 import java.util.Random;
@@ -23,18 +25,14 @@ public class OnlineShopping extends BaseTest
      */
     @Test
     public void checkOutWithoutLogIn() throws InterruptedException {
-
         driver.get("https://askomdch.com/");
-        driver.findElement(By.cssSelector("li[id='menu-item-1227'] a[class='menu-link']")).click();
-        driver.findElement(By.cssSelector("#woocommerce-product-search-field-0")).sendKeys("Blue");
-        driver.findElement(By.cssSelector("button[value='Search']")).click();
-
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,350)", "");
-
-        driver.findElement(By.xpath("//a[@aria-label='Add “Blue Shoes” to your cart']")).click();
+        HomePage homePage = new HomePage(driver);
+        StorePage storepage=homePage.clickStoreMenuLink();
+        storepage.search("Blue");
         Thread.sleep(5000);
-        driver.findElement((By.xpath("//a[@title='View cart']"))).click();
+        storepage.clickviewCartLink();
+
+
 //        Assert.assertEquals(driver.findElement(By.cssSelector("//a[normalize-space()='Blue Shoes']")).getText(),
 //                "Blue Shoes");
         JavascriptExecutor js1 = (JavascriptExecutor) driver;

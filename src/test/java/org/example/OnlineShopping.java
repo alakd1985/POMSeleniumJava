@@ -9,24 +9,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pom.BaseTest;
 
 import java.util.Random;
 
 /**
  * Unit test for simple App.
  */
-public class OnlineShopping
+public class OnlineShopping extends BaseTest
 {
     /**
      * Rigorous Test :-)
      */
     @Test
     public void checkOutWithoutLogIn() throws InterruptedException {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://askomdch.com/");
-        driver.manage().window().maximize();
 
+        driver.get("https://askomdch.com/");
         driver.findElement(By.cssSelector("li[id='menu-item-1227'] a[class='menu-link']")).click();
         driver.findElement(By.cssSelector("#woocommerce-product-search-field-0")).sendKeys("Blue");
         driver.findElement(By.cssSelector("button[value='Search']")).click();
@@ -93,6 +91,6 @@ public class OnlineShopping
         driver.findElement(By.cssSelector("#billing_postcode")).sendKeys("94086");
         driver.findElement(By.cssSelector("#billing_email")).sendKeys("leoalak@gmail.com");
         driver.findElement(By.cssSelector("#place_order")).click();
-        driver.quit();
+
     }
 }

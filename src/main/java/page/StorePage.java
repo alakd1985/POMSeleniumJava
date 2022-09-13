@@ -2,6 +2,7 @@ package page;
 
 import base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 public class StorePage extends BasePage {
@@ -11,7 +12,7 @@ public class StorePage extends BasePage {
 
     private final By searchFld= By.cssSelector("#woocommerce-product-search-field-0");
     private final By searchBtn= By.cssSelector("button[value='Search']");
-    private final By addtoCartBtn= By.xpath("//a[@aria-label='Add “Blue Shoes” to your cart']");
+    //private final By addtoCartBtn= By.xpath("//a[@aria-label='Add “Blue Shoes” to your cart']");
     private final By viewCartLink= By.xpath("//a[@title='View cart']");
 
     private StorePage enterTextSearchFld(String txt){
@@ -24,16 +25,20 @@ public class StorePage extends BasePage {
     }
     public StorePage search(String txt) {
         enterTextSearchFld(txt).
-                clickSearchBtn().
-                clickAddtoCartBtn();
+                clickSearchBtn();
+
         return this;
     }
-    private StorePage clickAddtoCartBtn(){
+    private By getAddToCartBtnElement(String productName){// this is an example of dynamic handling of element
+        return By.xpath("//a[@aria-label='Add “"+productName+"” to your cart']");
+    }
+    public StorePage clickAddtoCartBtn(String productName){
+        By addtoCartBtn= getAddToCartBtnElement(productName);
         driver.findElement(addtoCartBtn).click();
         return this;
     }
-    public StorePage clickviewCartLink(){
+    public CartPage clickviewCartLink(){
         driver.findElement(viewCartLink).click();
-        return this;
+        return new CartPage(driver);
     }
 }

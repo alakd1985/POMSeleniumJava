@@ -29,14 +29,17 @@ public class OnlineShopping extends BaseTest
         HomePage homePage = new HomePage(driver);
         StorePage storepage=homePage.clickStoreMenuLink();
         storepage.search("Blue");
+        storepage.clickAddtoCartBtn("Blue Shoes");
         Thread.sleep(5000);
+        JavascriptExecutor js1 = (JavascriptExecutor) driver;
+        js1.executeScript("window.scrollBy(0,350)", "");
         storepage.clickviewCartLink();
+
 
 
 //        Assert.assertEquals(driver.findElement(By.cssSelector("//a[normalize-space()='Blue Shoes']")).getText(),
 //                "Blue Shoes");
-        JavascriptExecutor js1 = (JavascriptExecutor) driver;
-        js1.executeScript("window.scrollBy(0,350)", "");
+
         driver.findElement(By.xpath("//a[normalize-space()='Proceed to checkout']")).click();
         Thread.sleep(5000);
         driver.findElement(By.cssSelector("#billing_first_name")).sendKeys("alak");

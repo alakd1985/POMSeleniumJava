@@ -1,6 +1,7 @@
 package page;
 
 import base.BasePage;
+import object.BillingAddress;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -17,33 +18,49 @@ public class CheckOutPage extends BasePage {
     private final By emailAddress = By.cssSelector("#billing_email");
     private final By zipCode = By.cssSelector("#billing_city");
 
-    public CheckOutPage enterFirstName(String txt){
+    public CheckOutPage enterFirstName(String txt) {
         driver.findElement(firstName).sendKeys(txt);
         return this;
     }
-    public CheckOutPage enterLastName(String txt){
+
+    public CheckOutPage enterLastName(String txt) {
         driver.findElement(lastName).sendKeys(txt);
         return this;
     }
-    public CheckOutPage entercompanyName(String txt){
+
+    public CheckOutPage entercompanyName(String txt) {
         driver.findElement(companyName).sendKeys(txt);
         return this;
     }
-    public CheckOutPage enterstreetAddress(String txt){
+
+    public CheckOutPage enterstreetAddress(String txt) {
         driver.findElement(streetAddress).sendKeys(txt);
         return this;
     }
-    public CheckOutPage entercity(String txt){
+
+    public CheckOutPage entercity(String txt) {
         driver.findElement(city).sendKeys(txt);
         return this;
     }
-    public CheckOutPage enteremailAddress(String txt){
+
+    public CheckOutPage enteremailAddress(String txt) {
         driver.findElement(emailAddress).sendKeys(txt);
         return this;
     }
-    public CheckOutPage enterzipCode(String txt){
+
+    public CheckOutPage enterzipCode(String txt) {
         driver.findElement(zipCode).sendKeys(txt);
         return this;
     }
 
+    public CheckOutPage setBillingAddress(BillingAddress billingAddress) {
+        return enterFirstName(billingAddress.getFirstName()).
+                enterLastName(billingAddress.getLastName()).
+                entercompanyName(billingAddress.getCompanyName()).
+                enterstreetAddress(billingAddress.getAddress()).
+                entercity(billingAddress.getCity()).
+                enterzipCode(billingAddress.getZipCode()).
+                enteremailAddress(billingAddress.getEmailAddress());
+
+    }
 }

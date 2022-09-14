@@ -48,14 +48,8 @@ public class OnlineShopping extends BaseTest {
         checkOutPage = new CartPage(driver).
                 clickProceedToCheckOutBtn();
         Thread.sleep(5000);
-        BillingAddress billingAddress = new BillingAddress().
-                setFirstName("alak").
-                setLastName("ddd").
-                setCompanyName("bbc").
-                setAddress("duke st").
-                setCity("sunnyvale").
-                setZipCode("94086").
-                setEmailAddress("abc@gmail.com");
+        BillingAddress billingAddress = new BillingAddress("alak","ddd","gdit",
+                "bbc", "sunnyvale","94086","abc@gmail.com");
         checkOutPage = new CheckOutPage(driver);
         checkOutPage.setBillingAddress(billingAddress);
 

@@ -8,6 +8,22 @@ public class BillingAddress {
     private String emailAddress;
     private String zipCode;
 
+    public BillingAddress() {
+
+    }
+
+    public BillingAddress(String firstName, String lastName, String companyName, String address,
+                          String city, String zipCode, String emailAddress) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.companyName = companyName;
+        this.address = address;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.emailAddress = emailAddress;
+
+    }
+
     public String getCompanyName() {
         return companyName;
     }
